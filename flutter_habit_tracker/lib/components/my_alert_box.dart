@@ -18,10 +18,10 @@ class MyAlertBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      backgroundColor: Colors.grey[900],
+      backgroundColor: Color(0xFFFFC98B),
       content: TextField(
         controller: controller,
-        style: TextStyle(color: Colors.white),
+        style: TextStyle(color: Colors.grey[700]),
         decoration: InputDecoration(
           hintText: hintText,
           hintStyle: TextStyle(color: Colors.grey.shade500),
@@ -35,19 +35,19 @@ class MyAlertBox extends StatelessWidget {
       actions: [
         MaterialButton(
           onPressed: onSave,
+          color: Color(0xFFFC7174),
           child: Text(
             "save",
             style: TextStyle(color: Colors.white),
           ),
-          color: strikemaster,
         ),
         MaterialButton(
           onPressed: onCancel,
+          color: Color(0xFFFC7174),
           child: Text(
             "cancel",
             style: TextStyle(color: Colors.white),
           ),
-          color: strikemaster,
         )
       ],
     );

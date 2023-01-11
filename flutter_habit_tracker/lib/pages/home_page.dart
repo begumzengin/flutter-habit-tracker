@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:flutter_habit_tracker/components/habit_tile.dart';
+import 'package:flutter_habit_tracker/data/habit_database.dart';
 import '../components/my_fab.dart';
 import '../components/my_alert_box.dart';
 
@@ -11,12 +13,23 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  //data structure for todays list
-  List todaysHabitList = [
-    // [ habitName, habitCompleted]
-    ["morning run", false],
-    ["read book", false],
-  ];
+  HabitDatabase db = HabitDatabase();
+  final _myBox = Hive.box("habit_database");
+
+  @override
+  void initState() {
+    //if there is no current habit list,
+    //then it is the 1st time ever opening the app
+    //then create default data
+    if (_myBox.get("CURRENT_HABIT_LIST") == null) {
+      db.createDefaultData();
+    }
+    //data already exists, this is not the first time
+    else {
+      db.loadData();
+    }
+    super.initState();
+  }
 
   //checkbox was tapped
   void checkboxTapped(bool? value, int index) {

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_habit_tracker/components/habit_tile.dart';
 import '../components/my_fab.dart';
+import '../components/new_habit_box.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -25,7 +26,14 @@ class _HomePageState extends State<HomePage> {
   }
 
   //create a new habit
-  void createNewHabit() {}
+  void createNewHabit() {
+    // show alert dialog for user to enter the new habit details
+    showDialog(
+        context: context,
+        builder: (context) {
+          return EnterNewHabitBox();
+        });
+  }
 
   @override
   Widget build(BuildContext context) {

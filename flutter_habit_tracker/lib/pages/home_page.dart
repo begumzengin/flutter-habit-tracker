@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_habit_tracker/components/habit_tile.dart';
 import '../components/my_fab.dart';
-import '../components/new_habit_box.dart';
+import '../components/my_alert_box.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -32,10 +32,10 @@ class _HomePageState extends State<HomePage> {
     showDialog(
         context: context,
         builder: (context) {
-          return EnterNewHabitBox(
+          return MyAlertBox(
             controller: _newHabitNameController,
             onSave: saveNewHabit,
-            onCancel: cancelNewHabit,
+            onCancel: cancelDialogBox,
           );
         });
   }
@@ -54,12 +54,27 @@ class _HomePageState extends State<HomePage> {
   }
 
   //cancel new habit
-  void cancelNewHabit() {
+  void cancelDialogBox() {
     //clear textfield
     _newHabitNameController.clear();
     //pop dialog box
     Navigator.of(context).pop();
   }
+
+  //open habit settings to edit
+  void openHabitSettings(int index) {
+    showDialog(
+        context: context,
+        builder: (context) {
+          return MyAlertBox(
+              controller: _newHabitNameController,
+              onSave: saveExistingHabit,
+              onCancel: cancelDialogBox);
+        });
+  }
+
+  //save existing habit with a new name
+  void saveExistingHabit() {}
 
   @override
   Widget build(BuildContext context) {
@@ -75,6 +90,7 @@ class _HomePageState extends State<HomePage> {
               habitName: todaysHabitList[index][0],
               habitCompleted: todaysHabitList[index][1],
               onChanged: (value) => checkboxTapped(value, index),
+              settingsTapped: (context) => openHabitSettings(index),
             );
           }),
     );

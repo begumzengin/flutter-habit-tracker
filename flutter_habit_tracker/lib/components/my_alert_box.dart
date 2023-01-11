@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_habit_tracker/constants.dart';
 
-class EnterNewHabitBox extends StatelessWidget {
+class MyAlertBox extends StatelessWidget {
   final controller;
   final VoidCallback onSave;
   final VoidCallback onCancel;
 
-  const EnterNewHabitBox({
+  const MyAlertBox({
     super.key,
     required this.controller,
     required this.onSave,

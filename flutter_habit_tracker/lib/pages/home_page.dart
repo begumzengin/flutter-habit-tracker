@@ -34,6 +34,7 @@ class _HomePageState extends State<HomePage> {
         builder: (context) {
           return MyAlertBox(
             controller: _newHabitNameController,
+            hintText: 'enter habit name',
             onSave: saveNewHabit,
             onCancel: cancelDialogBox,
           );
@@ -68,13 +69,27 @@ class _HomePageState extends State<HomePage> {
         builder: (context) {
           return MyAlertBox(
               controller: _newHabitNameController,
-              onSave: saveExistingHabit,
+              hintText: todaysHabitList[index][0],
+              onSave: () => saveExistingHabit(index),
               onCancel: cancelDialogBox);
         });
   }
 
   //save existing habit with a new name
-  void saveExistingHabit() {}
+  void saveExistingHabit(int index) {
+    setState(() {
+      todaysHabitList[index][0] = _newHabitNameController.text;
+    });
+    _newHabitNameController.clear();
+    Navigator.pop(context);
+  }
+
+  //delete habit
+  void deleteHabit(int index) {
+    setState(() {
+      todaysHabitList.removeAt(index);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -91,6 +106,7 @@ class _HomePageState extends State<HomePage> {
               habitCompleted: todaysHabitList[index][1],
               onChanged: (value) => checkboxTapped(value, index),
               settingsTapped: (context) => openHabitSettings(index),
+              deleteTapped: (context) => deleteHabit(index),
             );
           }),
     );

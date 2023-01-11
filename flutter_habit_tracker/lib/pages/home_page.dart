@@ -41,10 +41,18 @@ class _HomePageState extends State<HomePage> {
   }
 
   //save new habit
-  void saveNewHabit() {}
+  void saveNewHabit() {
+    //add new habit to todays habit list
+    todaysHabitList.add([_newHabitNameController.text, false]);
+  }
 
   //cancel new habit
-  void cancelNewHabit() {}
+  void cancelNewHabit() {
+    //clear textfield
+    _newHabitNameController.clear();
+    //pop dialog box
+    Navigator.of(context).pop();
+  }
 
   @override
   Widget build(BuildContext context) {

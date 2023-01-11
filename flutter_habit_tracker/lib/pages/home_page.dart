@@ -28,13 +28,17 @@ class _HomePageState extends State<HomePage> {
     else {
       db.loadData();
     }
+
+    //update the database
+    db.updateDatabase();
+
     super.initState();
   }
 
   //checkbox was tapped
   void checkboxTapped(bool? value, int index) {
     setState(() {
-      todaysHabitList[index][1] = value;
+      db.todaysHabitList[index][1] = value;
     });
   }
 
@@ -58,7 +62,7 @@ class _HomePageState extends State<HomePage> {
   void saveNewHabit() {
     //add new habit to todays habit list
     setState(() {
-      todaysHabitList.add([_newHabitNameController.text, false]);
+      db.todaysHabitList.add([_newHabitNameController.text, false]);
     });
 
     //clear textfield
@@ -82,7 +86,7 @@ class _HomePageState extends State<HomePage> {
         builder: (context) {
           return MyAlertBox(
               controller: _newHabitNameController,
-              hintText: todaysHabitList[index][0],
+              hintText: db.todaysHabitList[index][0],
               onSave: () => saveExistingHabit(index),
               onCancel: cancelDialogBox);
         });
@@ -91,7 +95,7 @@ class _HomePageState extends State<HomePage> {
   //save existing habit with a new name
   void saveExistingHabit(int index) {
     setState(() {
-      todaysHabitList[index][0] = _newHabitNameController.text;
+      db.todaysHabitList[index][0] = _newHabitNameController.text;
     });
     _newHabitNameController.clear();
     Navigator.pop(context);
@@ -100,7 +104,7 @@ class _HomePageState extends State<HomePage> {
   //delete habit
   void deleteHabit(int index) {
     setState(() {
-      todaysHabitList.removeAt(index);
+      db.todaysHabitList.removeAt(index);
     });
   }
 
@@ -112,11 +116,11 @@ class _HomePageState extends State<HomePage> {
         onPressed: () => createNewHabit(),
       ),
       body: ListView.builder(
-          itemCount: todaysHabitList.length,
+          itemCount: db.todaysHabitList.length,
           itemBuilder: (context, index) {
             return HabitTile(
-              habitName: todaysHabitList[index][0],
-              habitCompleted: todaysHabitList[index][1],
+              habitName: db.todaysHabitList[index][0],
+              habitCompleted: db.todaysHabitList[index][1],
               onChanged: (value) => checkboxTapped(value, index),
               settingsTapped: (context) => openHabitSettings(index),
               deleteTapped: (context) => deleteHabit(index),

@@ -43,7 +43,14 @@ class _HomePageState extends State<HomePage> {
   //save new habit
   void saveNewHabit() {
     //add new habit to todays habit list
-    todaysHabitList.add([_newHabitNameController.text, false]);
+    setState(() {
+      todaysHabitList.add([_newHabitNameController.text, false]);
+    });
+
+    //clear textfield
+    _newHabitNameController.clear();
+    //pop dialog box
+    Navigator.of(context).pop();
   }
 
   //cancel new habit

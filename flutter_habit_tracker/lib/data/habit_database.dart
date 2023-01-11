@@ -42,5 +42,26 @@ class HabitDatabase {
     //update universal habit list in case it changed
     //(new habit, edit habit, delete habit)
     _myBox.put("CURRENT_HABIT_LIST", todaysHabitList);
+
+    //calculate habit complete percentages for each day
+    calculateHabitPercentages();
+
+    //load heat map
+    loadHeatMap();
   }
+
+  void calculateHabitPercentage() {
+    int countCompleted = 0;
+    for (int i = 0; i < todaysHabitList.length; i++) {
+      if (todaysHabitList[i][1] == true) {
+        countCompleted++;
+      }
+    }
+
+    String percent = todaysHabitList.isEmpty
+        ? '0.0'
+        : (countCompleted / todaysHabitList.length).toStringAsFixed(1);
+  }
+
+  void loadHeatMap() {}
 }

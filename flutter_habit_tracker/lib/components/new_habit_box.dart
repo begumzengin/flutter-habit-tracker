@@ -17,9 +17,10 @@ class EnterNewHabitBox extends StatelessWidget {
   Widget build(BuildContext context) {
     return AlertDialog(
       backgroundColor: Colors.grey[900],
-      content: const TextField(
-        style: TextStyle(color: Colors.white),
-        decoration: InputDecoration(
+      content: TextField(
+        controller: controller,
+        style: const TextStyle(color: Colors.white),
+        decoration: const InputDecoration(
           enabledBorder: OutlineInputBorder(
             borderSide: BorderSide(color: Colors.white),
           ),
@@ -29,7 +30,7 @@ class EnterNewHabitBox extends StatelessWidget {
       ),
       actions: [
         MaterialButton(
-          onPressed: () {},
+          onPressed: onSave,
           child: Text(
             "save",
             style: TextStyle(color: Colors.white),
@@ -37,7 +38,7 @@ class EnterNewHabitBox extends StatelessWidget {
           color: strikemaster,
         ),
         MaterialButton(
-          onPressed: () {},
+          onPressed: onCancel,
           child: Text(
             "cancel",
             style: TextStyle(color: Colors.white),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class HabitTile extends StatelessWidget {
   final String habitName;
@@ -53,11 +54,10 @@ class HabitTile extends StatelessWidget {
               Checkbox(
                 value: habitCompleted,
                 onChanged: onChanged,
-                checkColor: Color(0xFFE79796),
-                activeColor: Color(0xFFC6C09C),
+                activeColor: Color(0xFF5D7B6F),
               ),
               //habit name
-              Text(habitName),
+              Text(habitName, style: GoogleFonts.spaceGrotesk()),
             ],
           ),
         ),

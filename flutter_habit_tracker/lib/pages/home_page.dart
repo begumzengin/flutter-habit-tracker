@@ -3,6 +3,7 @@ import 'package:flutter_habit_tracker/components/month_summary.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:flutter_habit_tracker/components/habit_tile.dart';
 import 'package:flutter_habit_tracker/data/habit_database.dart';
+import 'package:google_fonts/google_fonts.dart';
 import '../components/my_fab.dart';
 import '../components/my_alert_box.dart';
 
@@ -120,6 +121,13 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+          backgroundColor: Color(0xFF58806B),
+          elevation: 2,
+          title: Text(
+            "habit tracker",
+            style: GoogleFonts.questrial(letterSpacing: 2),
+          )),
       backgroundColor: Colors.grey[300],
       floatingActionButton: MyFloatingActionButton(onPressed: createNewHabit),
       body: ListView(
